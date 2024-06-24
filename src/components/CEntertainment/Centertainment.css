@@ -1,0 +1,128 @@
+#Centertainment {
+    padding: 0px 0px;
+    color: #ababab;
+    top: 260px;
+}
+
+.CentertainmentSec {
+    margin: 10px auto;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+}
+
+.CentertainmentTitle {
+    margin: 20px auto;
+}
+
+.CentertainmentTitle span {
+    padding: 5px;
+    font-size: 30px;
+    border-radius: 5px;
+    background-color: #ababab;
+}
+
+.Centertainmentpage2 {
+    margin: 10px auto 0;
+    padding: 7px;
+    width: 90%;
+    border: 1px solid #0b0b11;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.Centertainmentpage2:hover {
+    overflow-x: scroll;
+}
+
+.Centertainmentnews {
+    margin: 10px 0;
+}
+
+.CentertainmentnewsBox {
+    display: flex;
+    gap: 30px;
+}
+
+.CentertainmentnewsCard {
+    transition: transform 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: 8px;
+}
+
+.CentertainmentnewsCard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.CentertainmentnewsCard .Centertainmentimg {
+    width: 400px;
+    height: 250px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.CentertainmentnewsCard .Centertainmentimg img {
+    width: 90%;
+    height: 200px;
+    margin: 20px 20px 0;
+    object-fit: cover;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.CentertainmentnewsCard .Centertainmentimg img:hover {
+    transform: scale(1.1);
+    filter: brightness(1.2);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.CentertainmentnewsCard .Centertainmenttext {
+    padding: 5px 30px;
+}
+
+.CentertainmentnewsCard .Centertainmenttext .Centertainmenttitle {
+    margin-bottom: 10px;
+}
+
+.CentertainmentnewsCard .Centertainmenttext .Centertainmenttitle a {
+    color: #333;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+.CentertainmentnewsCard .Centertainmenttext .Centertainmenttitle a:hover {
+    text-decoration: underline;
+    color: blue;
+}
+
+.toPentertainment {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.toPentertainment button {
+    padding: 5px;
+    color: black;
+    font-weight: 600;
+    border-radius: 3px;
+    background-color: rgb(254, 241, 241);
+}
+
+.toPentertainment button:hover {
+    background-color: black;
+    color: white;
+}
+
+@media (max-width: 750px) {
+    .CentertainmentTitle span {
+        font-size: 24px;
+    }
+
+    .CentertainmentContainer {
+        margin: 10px 50px;
+    }
+}

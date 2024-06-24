@@ -1,0 +1,32 @@
+.clientSec {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.clientImage {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 100px;
+    justify-content: center;
+}
+
+.clientSec img {
+    width: 250px;
+    height: 250px;
+}
+
+/* @media (max-width: 950px) {
+    .clientSec img {
+        width: 200px;
+        height: 200px;
+    }
+} */
+
+@media (max-width: 1400px) {
+    .clientSec img {
+        width: 150px;
+        height: 150px;
+    }
+}

@@ -1,0 +1,128 @@
+#Cscience {
+    padding: 0px 0px;
+    color: #ababab;
+    top: 260px;
+}
+
+.CscienceSec {
+    margin: 10px auto;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+}
+
+.CscienceTitle {
+    margin: 20px auto;
+}
+
+.CscienceTitle span {
+    padding: 5px;
+    font-size: 30px;
+    border-radius: 5px;
+    background-color: #ababab;
+}
+
+.Csciencepage2 {
+    margin: 10px auto 0;
+    padding: 7px;
+    width: 90%;
+    border: 1px solid #0b0b11;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.Csciencepage2:hover {
+    overflow-x: scroll;
+}
+
+.Csciencenews {
+    margin: 10px 0;
+}
+
+.CsciencenewsBox {
+    display: flex;
+    gap: 30px;
+}
+
+.CsciencenewsCard {
+    transition: transform 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: 8px;
+}
+
+.CsciencenewsCard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.CsciencenewsCard .Cscienceimg {
+    width: 400px;
+    height: 250px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.CsciencenewsCard .Cscienceimg img {
+    width: 90%;
+    height: 200px;
+    margin: 20px 20px 0;
+    object-fit: cover;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.CsciencenewsCard .Cscienceimg img:hover {
+    transform: scale(1.1);
+    filter: brightness(1.2);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.CsciencenewsCard .Csciencetext {
+    padding: 5px 30px;
+}
+
+.CsciencenewsCard .Csciencetext .Csciencetitle {
+    margin-bottom: 10px;
+}
+
+.CsciencenewsCard .Csciencetext .Csciencetitle a {
+    color: #333;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+.CsciencenewsCard .Csciencetext .Csciencetitle a:hover {
+    text-decoration: underline;
+    color: blue;
+}
+
+.toPscience {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.toPscience button {
+    padding: 5px;
+    color: black;
+    font-weight: 600;
+    border-radius: 3px;
+    background-color: rgb(254, 241, 241);
+}
+
+.toPscience button:hover {
+    background-color: black;
+    color: white;
+}
+
+@media (max-width: 750px) {
+    .CscienceTitle span {
+        font-size: 24px;
+    }
+
+    .CscienceContainer {
+        margin: 10px 50px;
+    }
+}

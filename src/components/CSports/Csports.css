@@ -1,0 +1,128 @@
+#Csports {
+    padding: 0px 0px;
+    color: #ababab;
+    top: 260px;
+}
+
+.CsportsSec {
+    margin: 10px auto;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+}
+
+.CsportsTitle {
+    margin: 20px auto;
+}
+
+.CsportsTitle span {
+    padding: 5px;
+    font-size: 30px;
+    border-radius: 5px;
+    background-color: #ababab;
+}
+
+.Csportspage2 {
+    margin: 10px auto 0;
+    padding: 7px;
+    width: 90%;
+    border: 1px solid #0b0b11;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.Csportspage2:hover {
+    overflow-x: scroll;
+}
+
+.Csportsnews {
+    margin: 10px 0;
+}
+
+.CsportsnewsBox {
+    display: flex;
+    gap: 30px;
+}
+
+.CsportsnewsCard {
+    transition: transform 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: 8px;
+}
+
+.CsportsnewsCard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.CsportsnewsCard .Csportsimg {
+    width: 400px;
+    height: 250px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.CsportsnewsCard .Csportsimg img {
+    width: 90%;
+    height: 200px;
+    margin: 20px 20px 0;
+    object-fit: cover;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.CsportsnewsCard .Csportsimg img:hover {
+    transform: scale(1.1);
+    filter: brightness(1.2);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.CsportsnewsCard .Csportstext {
+    padding: 5px 30px;
+}
+
+.CsportsnewsCard .Csportstext .Csportstitle {
+    margin-bottom: 10px;
+}
+
+.CsportsnewsCard .Csportstext .Csportstitle a {
+    color: #333;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+.CsportsnewsCard .Csportstext .Csportstitle a:hover {
+    text-decoration: underline;
+    color: blue;
+}
+
+.toPsports {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.toPsports button {
+    padding: 5px;
+    color: black;
+    font-weight: 600;
+    border-radius: 3px;
+    background-color: rgb(254, 241, 241);
+}
+
+.toPsports button:hover {
+    background-color: black;
+    color: white;
+}
+
+@media (max-width: 750px) {
+    .CsportsTitle span {
+        font-size: 24px;
+    }
+
+    .CsportsContainer {
+        margin: 10px 50px;
+    }
+}

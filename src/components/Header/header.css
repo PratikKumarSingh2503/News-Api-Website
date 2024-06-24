@@ -1,0 +1,25 @@
+.header{
+    margin-top: 10px;
+    background-color: white;
+}
+.headerTitle{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'lora', serif;
+}
+.title1{
+    position: absolute;
+    padding-top: 150px;
+    font-size: 50px;
+}
+.title2{
+    position: absolute;
+    padding-top: 230px;
+    font-size: 30px;
+}
+
+.headerImg{
+    width: 100%;
+    height: 540px;
+}

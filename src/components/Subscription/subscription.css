@@ -1,0 +1,62 @@
+.subscriptionSec {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.subscriptionTitle {
+    margin: 20px auto;
+}
+
+.subscriptionTitle span {
+    padding: 5px;
+    font-size: 30px;
+    border-radius: 5px;
+    background-color: #ababab;
+}
+
+.subscriptionContainer {
+    text-align: center;
+}
+
+.subscriptionContainer p {
+    margin-top: 30px;
+}
+
+.subscriptionForm {
+    margin: 30px auto 50px;
+    width: 700px;
+    height: 50px;
+    display: flex;
+    border-radius: 50px;
+    border: 1px solid black;
+}
+.subscriptionInput label{
+    width: 100%;
+}
+.subscriptionForm input {
+    width: 580px;
+    height: 100%;
+    padding-left: 10px;
+    border-radius: 50px;
+    font-size: 16px;
+    border: none;
+    outline: none;
+}
+.subscriptionForm button{
+    margin: 5px;
+    padding: 2px 20px;
+    border-radius: 40px;
+    color: white;
+    background: rgb(0, 71, 0);
+}
+@media (max-width: 750px) {
+    .subscriptionTitle span {
+      font-size: 24px;
+    }
+  
+    .subscriptionForm {
+        width: 400px;
+    }
+  }

@@ -1,0 +1,110 @@
+.topbar {
+    top: 55px;
+    height: 50px;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    background-color: white;
+    overflow: hidden;
+    z-index: 9;
+}
+
+.desktopMenu {
+    margin: 0 auto;
+    display: flex;
+    list-style: none;
+    gap: 100px;
+}
+
+.desktopMenuListItem {
+    position: relative;
+    align-items: center;
+    font-size: 20px;
+    font-weight: 500;
+    color: black;
+    cursor: pointer;
+}
+
+.desktopMenuListItem::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    animation: showRight 1s ease forwards;
+    animation-delay: .5s;
+}
+
+.desktopMenuListItem:hover {
+    color: blue;
+    padding-bottom: 0.5rem;
+    border-bottom: 0;
+}
+
+
+.active {
+    color: blue;
+    font-weight: 600;
+    padding-bottom: 0.5rem;
+    border-bottom: 3px solid blue;
+}
+
+.midlink:hover {
+    color: rgb(2, 2, 209);
+}
+
+/*   Animation Keyframes    */
+@keyframes showRight {
+    100% {
+        width: 0;
+    }
+}
+
+@media screen and (max-width:1400px) {
+    .desktopMenu {
+        gap: 70px;
+    }
+
+    .desktopMenuListItem {
+        font-size: 18px;
+    }
+}
+
+@media screen and (max-width:1110px) {
+    .desktopMenu {
+        gap: 40px;
+    }
+
+    .desktopMenuListItem {
+        font-size: 15px;
+    }
+}
+
+@media screen and (max-width:950px) {
+    .desktopMenu {
+        gap: 20px;
+    }
+
+    .desktopMenuListItem {
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width:680px) {
+    .topbar{
+        padding: 1rem 1rem;
+    }
+    .desktopMenu {
+        gap: 10px;
+    }
+
+    .desktopMenuListItem {
+        font-size: 11px;
+        font-weight: 1200;
+    }
+
+}

@@ -1,0 +1,243 @@
+.business {
+    position: relative;
+    min-height: 100vh;
+    padding: 20px 40px;
+}
+
+.business .content {
+    max-width: 100%;
+}
+
+.business .content h2 {
+    font-size: 40px;
+    color: #2b9ec2;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin: 10px 20px 0;
+}
+
+.business .content h2::after {
+    content: "";
+    height: 5px;
+    width: 200px;
+    margin: 0 60px;
+    background-color: #2b9ec2;
+    border-radius: 10px;
+    display: block;
+}
+
+.topHeadlines {
+    padding-top: 10px;
+    width: 100%;
+    gap: 50px;
+    display: grid;
+    grid-template-columns: 1.3fr 1.1fr;
+}
+
+.topHeadlines .left {
+    padding: 10px 0;
+}
+
+.topHeadlines .left>.title {
+    padding: 10px 15px;
+    text-align: center;
+    font-size: 20px;
+    color: black;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+.topHeadlines .left .img {
+    width: 100%;
+    height: 400px;
+}
+
+.topHeadlines .left .img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.topHeadlines .left .text {
+    padding: 20px 15px 10px;
+}
+
+.topHeadlines .left .text .title a {
+    text-decoration: none;
+}
+
+.topHeadlines .left .text .title a h2 {
+    font-size: 20px;
+    color: #0b0b11;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+.topHeadlines .left .text .title a h2:hover {
+    text-decoration: underline;
+}
+
+.topHeadlines .left .text .description {
+    font-size: 15px;
+    margin-top: 10px;
+    color: #050507;
+    letter-spacing: 1px;
+    font-weight: 700;
+}
+
+.topHeadlines .right {
+    padding: 10px 0;
+    width: 100%;
+    height: 500px;
+}
+
+.topHeadlines .right>.title {
+    padding: 10px 15px;
+    text-align: center;
+    font-size: 20px;
+    color: black;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+.topHeadlines .right .topNews {
+    padding: 7px;
+    height: 85%;
+    border: 1px solid #0b0b11;
+    border-radius: 4px;
+    overflow-y: hidden;
+}
+
+.topHeadlines .right .topNews:hover {
+    overflow-y: scroll;
+}
+
+.topHeadlines .right .topNews .news {
+    display: grid;
+    grid-template-columns: auto auto;
+    align-items: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid black;
+    margin-bottom: 10px;
+}
+
+.topHeadlines .right .topNews .news:last-child {
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.topHeadlines .right .topNews .news .img {
+    width: 200px;
+    height: 120px;
+}
+
+.topHeadlines .right .topNews .news .img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.topHeadlines .right .topNews .news .text {
+    margin-inline: 10px;
+}
+
+.topHeadlines .right .topNews .news .text .title a {
+    text-decoration: none;
+}
+
+.topHeadlines .right .topNews .news .text .title a p {
+    color: #0b0b11;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.topHeadlines .right .topNews .news .text .title a p:hover {
+    text-decoration: underline;
+}
+
+.page2 {
+    width: 100%;
+    min-height: 100vh;
+    padding: 0px 50px;
+}
+
+.page2 .news {
+    padding: 30px 0;
+}
+
+.page2 .news>.title h2 {
+    font-size: 40px;
+    cursor: pointer;
+    display: inline;
+}
+
+.page2 .news>.title h2:hover {
+    text-decoration: underline;
+}
+
+.page2 .news .newsBox {
+    width: 100%;
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.page2 .news .newsBox .newsCard {
+    width: 400px;
+    height: 300px;
+    margin: 10px;
+    text-align: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.page2 .news .newsBox .newsCard .img {
+    width: 100%;
+    height: 220px;
+}
+
+.page2 .news .newsBox .newsCard .img img {
+    margin-top: 10px;
+    width: 350px;
+    height: 200px;
+    object-fit: cover;
+}
+
+.page2 .news .newsBox .newsCard .text {
+    padding: 10px;
+}
+
+.page2 .news .newsBox .newsCard .text .title a {
+    text-decoration: none;
+}
+
+.page2 .news .newsBox .newsCard .text .title a p {
+    font-size: 15px;
+    cursor: pointer;
+    color: #0b0b11;
+    font-weight: 700;
+}
+
+.page2 .news .newsBox .newsCard .text a p:hover {
+    text-decoration: underline;
+}
+
+.topHeadlines .left .img img:hover,
+.topHeadlines .right .topNews .news .img img:hover,
+.page2 .news .newsBox .newsCard .img img:hover {
+    transform: scale(1.1);
+    filter: brightness(1.2);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+
+@media (max-width: 750px) {
+    .topHeadlines {
+        display: flex;
+        flex-direction: column;
+    }
+}
