@@ -22,13 +22,15 @@ const NewsPage = () => {
       try {
         setLoading(true);
         const res = await fetch(
-          `https://newsapi.org/v2/top-headlines?country=us&category=${categoryName}&pageSize=30&apiKey=${apiKey}`
+          `${import.meta.env.VITE_API_URL}/news?country=us&category=${
+            categoryName || "general"
+          }`
         );
         const data = await res.json();
         const withImg = (data.articles || []).filter((a) => a.urlToImage);
         setArticles(withImg.length ? withImg : data.articles || []);
       } catch (err) {
-        console.error("Error fetching news:", err);
+        console.error("❌ Error fetching news:", err);
       } finally {
         setLoading(false);
       }

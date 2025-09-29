@@ -9,17 +9,16 @@ export default function Hero({ country, activeCategory, onPickArticle }) {
   useEffect(() => {
     setLoading(true);
     fetch(
-      `https://newsapi.org/v2/top-headlines?country=${country}&${
-        activeCategory && activeCategory !== "general"
-          ? `category=${activeCategory}&`
-          : ""
-      }pageSize=8&apiKey=${apiKey}`
+      `${import.meta.env.VITE_API_URL}/news?country=${country}&category=${
+        activeCategory || "general"
+      }`
     )
       .then((r) => r.json())
       .then((d) => {
         const withImg = (d.articles || []).filter((a) => a.urlToImage);
         setItems(withImg.length ? withImg : d.articles || []);
       })
+      .catch((err) => console.error("❌ Failed to fetch news:", err))
       .finally(() => setLoading(false));
   }, [country, activeCategory]);
 

@@ -23,6 +23,38 @@ const subscriberSchema = new mongoose.Schema({
 });
 const Subscriber = mongoose.model("Subscriber", subscriberSchema);
 
+// News Fetching route
+app.get("/api/news", async (req, res) => {
+    try {
+        const response = await fetch(
+            `https://newsapi.org/v2/top-headlines?country=us&pageSize=8&apiKey=${process.env.NEWS_API_KEY}`
+        );
+        const data = await response.json();
+        res.json(data);
+    } catch (err) {
+        res.status(500).json({ error: "Failed to fetch news" });
+    }
+});
+
+// Search route
+app.get("/api/search", async (req, res) => {
+  const { q } = req.query;
+  if (!q) return res.json({ articles: [] });
+
+  try {
+    const response = await fetch(
+      `https://newsapi.org/v2/everything?q=${encodeURIComponent(q)}&language=en&sortBy=publishedAt&pageSize=9&apiKey=${process.env.NEWS_API_KEY}`
+    );
+    const data = await response.json();
+
+    // Ensure frontend always gets { articles: [...] }
+    res.json({ articles: data.articles || [] });
+  } catch (err) {
+    console.error("❌ Backend search error:", err);
+    res.status(500).json({ articles: [] });
+  }
+});
+
 // News chatbot route
 app.get("/chat-news", async (req, res) => {
     try {
@@ -109,75 +141,3 @@ cron.schedule("0 9 * * *", async () => {
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
-// import express from "express";
-// import mongoose from "mongoose";
-// import cors from "cors";
-// import dotenv from "dotenv";
-// import nodemailer from "nodemailer";
-
-// dotenv.config();
-
-// const app = express();
-// app.use(cors());
-// app.use(express.json());
-
-// // MongoDB connection
-// mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-//     .then(() => console.log("✅ MongoDB connected"))
-//     .catch(err => console.error(err));
-
-// // Subscriber Schema
-// const subscriberSchema = new mongoose.Schema({
-//     email: { type: String, required: true, unique: true }
-// });
-// const Subscriber = mongoose.model("Subscriber", subscriberSchema);
-
-// // Subscribe route
-// app.post("/subscribe", async (req, res) => {
-//     try {
-//         const { email } = req.body;
-//         if (!email) return res.status(400).json({ message: "Email is required" });
-
-//         // Save to DB
-//         const newSubscriber = new Subscriber({ email });
-//         await newSubscriber.save();
-
-//         res.status(201).json({ message: "🎉 Subscribed successfully!" });
-//     } catch (error) {
-//         if (error.code === 11000) {
-//             return res.status(400).json({ message: "You are already subscribed!" });
-//         }
-//         res.status(500).json({ message: "Server error", error });
-//     }
-// });
-
-// // Daily email sender (Cron later)
-// const transporter = nodemailer.createTransport({
-//     service: "gmail",
-//     auth: {
-//         user: process.env.EMAIL_USER, // your email
-//         pass: process.env.EMAIL_PASS  // app password (not raw Gmail password)
-//     }
-// });
-
-// // Example route to send test email
-// app.post("/send-news", async (req, res) => {
-//     try {
-//         const subscribers = await Subscriber.find();
-//         const emails = subscribers.map(sub => sub.email);
-
-//         await transporter.sendMail({
-//             from: `"Daily News" <${process.env.EMAIL_USER}>`,
-//             to: emails,
-//             subject: "📰 Your Daily News Update",
-//             text: "Here are today’s top news stories... (later connect with News API)"
-//         });
-
-//         res.json({ message: "✅ Emails sent!" });
-//     } catch (err) {
-//         res.status(500).json({ message: "Error sending emails", err });
-//     }
-// });
-
-// const PORT = process.env.PORT || 5000;
-// app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));

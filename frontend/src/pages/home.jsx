@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Navbar from "../components/navbar";
 import Hero from "../components/hero";
 import { Link } from "react-router-dom";
@@ -12,19 +12,36 @@ export default function Home() {
   const [searchTerm, setSearchTerm] = useState("");
   const [results, setResults] = useState([]);
   const [resLoading, setResLoading] = useState(false);
+  const searchRef = useRef(null);
 
   useEffect(() => {
     if (!searchTerm) return setResults([]);
     setResLoading(true);
-    const controller = new AbortController();
-    const url = `https://newsapi.org/v2/everything?q=${encodeURIComponent(
-      searchTerm
-    )}&language=en&sortBy=publishedAt&pageSize=9&apiKey=${apiKey}`;
 
-    fetch(url, { signal: controller.signal })
+    const controller = new AbortController();
+
+    fetch(
+      `${import.meta.env.VITE_API_URL}/search?q=${encodeURIComponent(
+        searchTerm
+      )}`,
+      { signal: controller.signal }
+    )
       .then((r) => r.json())
-      .then((d) => setResults(d.articles || []))
-      .finally(() => setResLoading(false));
+      .then((d) => {
+        setResults(d.articles || []);
+      })
+      .catch((err) => {
+        if (err.name !== "AbortError") {
+          console.error("❌ Failed to fetch search results:", err);
+        }
+      })
+      .finally(() => {
+      setResLoading(false);
+      // 👇 scroll after fetch finishes (whether results exist or not)
+      if (searchRef.current) {
+        searchRef.current.scrollIntoView({ behavior: "smooth" });
+      }
+    });
 
     return () => controller.abort();
   }, [searchTerm]);
@@ -57,7 +74,7 @@ export default function Home() {
 
       {/* Search Results Section */}
       {searchTerm && (
-        <section className="mx-auto max-w-7xl px-4 py-10">
+        <section ref={searchRef} className="mx-auto max-w-7xl px-4 py-10">
           <div className="mb-4 flex items-end justify-between">
             <h2 className="text-2xl font-bold tracking-tight">
               Search results for{" "}
