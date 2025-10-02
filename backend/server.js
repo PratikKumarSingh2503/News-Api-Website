@@ -23,13 +23,22 @@ const subscriberSchema = new mongoose.Schema({
 });
 const Subscriber = mongoose.model("Subscriber", subscriberSchema);
 
-// News Fetching route
-// /api/news
+// All News Fetching route
 app.get("/api/news", async (req, res) => {
     try {
-        const { data } = await axios.get(
-            `https://newsapi.org/v2/top-headlines?country=us&pageSize=8&apiKey=${process.env.NEWS_API_KEY}`
-        );
+        const { country = "us", category, pageSize = "60" } = req.query;
+
+        const params = new URLSearchParams({
+            country,
+            pageSize,
+            apiKey: process.env.NEWS_API_KEY
+        });
+        if (category) {
+            params.append("category", category);
+        }
+
+        const url = `https://newsapi.org/v2/top-headlines?${params.toString()}`;
+        const { data } = await axios.get(url);
         res.json(data);
     } catch (err) {
         res.status(500).json({ error: "Failed to fetch news" });
@@ -39,13 +48,15 @@ app.get("/api/news", async (req, res) => {
 
 // Search route
 app.get("/api/search", async (req, res) => {
-    const { q } = req.query;
+    const { q, country = "us" } = req.query;
     if (!q) return res.json({ articles: [] });
 
     try {
-        const { data } = await axios.get(
-            `https://newsapi.org/v2/everything?q=${encodeURIComponent(q)}&language=en&sortBy=publishedAt&pageSize=9&apiKey=${process.env.NEWS_API_KEY}`
-        );
+        // For search, NewsAPI everything endpoint ignores country; use top-headlines when q is short
+        const baseUrl = q.length < 3
+            ? `https://newsapi.org/v2/top-headlines?country=${country}&pageSize=9&apiKey=${process.env.NEWS_API_KEY}`
+            : `https://newsapi.org/v2/everything?q=${encodeURIComponent(q)}&language=en&sortBy=publishedAt&pageSize=9&apiKey=${process.env.NEWS_API_KEY}`;
+        const { data } = await axios.get(baseUrl);
 
         // Ensure frontend always gets { articles: [...] }
         res.json({ articles: data.articles || [] });
@@ -55,11 +66,11 @@ app.get("/api/search", async (req, res) => {
     }
 });
 
-// Fetch News from API
+// Fetch HeadLines
 const fetchNews = async () => {
     try {
         const { data } = await axios.get(
-            `https://newsapi.org/v2/top-headlines?country=in&apiKey=${process.env.NEWS_API_KEY}`
+            `https://newsapi.org/v2/top-headlines?&apiKey=${process.env.NEWS_API_KEY}`
         );
 
         // Take top 5 headlines
@@ -77,7 +88,7 @@ const fetchNews = async () => {
 // Chatbot news route
 app.get("/api/chat-news", async (req, res) => {
     try {
-        const { category } = req.query;
+        const { category, country = "us" } = req.query;
         const validCategories = [
             "business",
             "entertainment",
@@ -89,7 +100,7 @@ app.get("/api/chat-news", async (req, res) => {
         ];
         const cat = validCategories.includes(category) ? category : "general";
 
-        const url = `https://newsapi.org/v2/top-headlines?country=us&category=${cat}&apiKey=${process.env.NEWS_API_KEY}`;
+        const url = `https://newsapi.org/v2/top-headlines?country=${country}&category=${cat}&apiKey=${process.env.NEWS_API_KEY}`;
 
         const { data } = await axios.get(url);
         const articles = data.articles || [];
