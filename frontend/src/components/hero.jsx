@@ -1,7 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
 
-const apiKey = "35774b6ef5cf4c50a38a1d9332761028"; // Replace with env var in production
-
 export default function Hero({ country, activeCategory, onPickArticle }) {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);

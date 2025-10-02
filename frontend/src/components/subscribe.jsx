@@ -9,23 +9,33 @@ const Subscribe = () => {
     if (!email) return;
 
     try {
-      const res = await fetch("http://localhost:5000/subscribe", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/subscribe`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),
       });
 
       const data = await res.json();
-      setSuccess(data.message);
+
+      if (res.ok) {
+        setSuccess(data.message || "✅ Subscribed successfully!");
+      } else {
+        setSuccess(data.error || "❌ Subscription failed. Try again.");
+      }
     } catch (err) {
+      console.error("❌ Subscription error:", err);
       setSuccess("❌ Subscription failed. Try again.");
+    } finally {
+      setEmail("");
     }
-    setEmail("");
   };
 
   return (
     <div className="">
-      <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-3">
+      <form
+        onSubmit={handleSubscribe}
+        className="flex flex-col sm:flex-row gap-3"
+      >
         <input
           type="email"
           value={email}
@@ -41,7 +51,11 @@ const Subscribe = () => {
           Subscribe
         </button>
       </form>
-      {success && <p className="mt-3 text-green-600">{success}</p>}
+      {success && (
+        <p className={`mt-3 ${res.ok ? "text-green-600" : "text-red-600"}`}>
+          {success}
+        </p>
+      )}
     </div>
   );
 };

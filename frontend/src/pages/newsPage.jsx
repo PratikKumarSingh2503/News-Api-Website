@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 
-const apiKey = "35774b6ef5cf4c50a38a1d9332761028";
 const categories = [
   "general",
   "business",

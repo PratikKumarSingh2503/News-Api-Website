@@ -76,7 +76,7 @@ const Footer = () => {
             </li>
             <li>
               <Link
-                to="/news/general"
+                to="/"
                 className="!text-gray-600 hover:text-rose-600 transition"
               >
                 Terms
@@ -84,7 +84,7 @@ const Footer = () => {
             </li>
             <li>
               <Link
-                to="/about"
+                to="/"
                 className="!text-gray-600 hover:text-rose-600 transition"
               >
                 Policies

@@ -2,6 +2,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Chatbot from "./components/chatbot";
 import NewsPage from "./pages/newsPage";
 import Home from "./pages/home";
+import About from "./pages/about";
+import Contact from "./pages/contact";
 import Footer from "./components/footer";
 
 function App() {
@@ -16,6 +18,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/news/:categoryName" element={<NewsPage />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
           </Routes>
         </main>
 

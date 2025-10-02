@@ -2,9 +2,6 @@ import React, { useEffect, useState, useRef } from "react";
 import Navbar from "../components/navbar";
 import Hero from "../components/hero";
 import { Link } from "react-router-dom";
-import Footer from "../components/footer";
-
-const apiKey = "35774b6ef5cf4c50a38a1d9332761028";
 
 export default function Home() {
   const [active, setActive] = useState("general");
