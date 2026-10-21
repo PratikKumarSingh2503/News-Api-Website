@@ -133,7 +133,7 @@ app.get("/api/chat-news", async (req, res) => {
 });
 
 // Subscribe route
-app.post("/subscribe", async (req, res) => {
+app.post("/api/subscribe", async (req, res) => {
     try {
         const { email } = req.body;
         if (!email) return res.status(400).json({ message: "Email is required" });

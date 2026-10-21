@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Nav from "../components/nav";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -35,6 +36,7 @@ export default function Contact() {
 
   return (
     <section className="bg-neutral-50 min-h-screen py-16 px-6">
+      <Nav />
       <div className="mx-auto max-w-3xl">
         <h1 className="text-4xl font-bold text-gray-900 mb-6 text-center">
           Contact Us

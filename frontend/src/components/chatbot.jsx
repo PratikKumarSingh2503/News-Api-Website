@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Rnd } from "react-rnd";
+// import { Rnd } from "react-rnd";
 import { FaPaperPlane } from "react-icons/fa";
 
 const Chatbot = () => {
@@ -55,7 +55,7 @@ const Chatbot = () => {
   const fetchNews = async (category) => {
     try {
       const res = await fetch(
-        `${import.meta.env.VITE_API_URL}/chat-news?category=${category}`
+        `${import.meta.env.VITE_API_URL}/chat-news?category=${category}`,
       );
       const data = await res.json();
       let articles = data.articles || [];
@@ -73,7 +73,7 @@ const Chatbot = () => {
       // fallback if nothing new
       if (!articles.length && category !== "general") {
         const fallbackRes = await fetch(
-          `${import.meta.env.VITE_API_URL}/chat-news?category=general`
+          `${import.meta.env.VITE_API_URL}/chat-news?category=general`,
         );
         const fallbackData = await fallbackRes.json();
         articles = fallbackData.articles || [];
@@ -130,17 +130,41 @@ const Chatbot = () => {
 
   return (
     <div>
-      {!isOpen && (
+      {/* {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
           className="fixed bottom-5 right-5 bg-blue-600 text-white px-4 py-3 rounded-full shadow-lg hover:bg-blue-700 transition-all duration-200 z-[9999]"
         >
           💬
         </button>
+      )} */}
+      {!isOpen && (
+        <button
+          type="button"
+          onClick={() => setIsOpen(true)}
+          aria-label="Open NewsBot chat"
+          className="fixed bottom-5 right-5 z-[9999] flex items-center justify-center rounded-full bg-blue-600 px-4 py-3 text-white shadow-lg transition-all duration-200 hover:bg-blue-700"
+        >
+          💬
+        </button>
       )}
 
       {isOpen && (
-        <Rnd
+        <div
+          className="
+        max-h-[calc(100dvh-6rem)]
+        fixed bottom-20 right-5 z-[9999]
+        flex h-[420px] w-[320px]
+        flex-col overflow-hidden
+        max-w-[calc(100vw-2rem)]
+        rounded-xl border bg-white shadow-xl
+        max-sm:bottom-0 max-sm:right-0
+        max-sm:h-[70dvh] max-sm:max-h-[70dvh]
+        max-sm:w-full max-sm:max-w-full
+        max-sm:rounded-b-none
+        "
+        >
+          {/*  <Rnd
           default={{
             x: window.innerWidth - 360,
             y: window.innerHeight - 460,
@@ -159,8 +183,8 @@ const Chatbot = () => {
               ? { left: 0, right: 0, bottom: 0, width: "100%", height: "70vh" }
               : {}),
           }}
-        >
-          <div className="w-full h-full bg-white border rounded-xl shadow-xl flex flex-col overflow-hidden">
+        > */}
+          <div className="flex h-full min-h-0 w-full flex-col overflow-hidden rounded-xl border bg-white shadow-xl">
             {/* Header */}
             <div className="drag-handle flex justify-between items-center px-3 py-2 bg-blue-600 text-white font-semibold rounded-t-xl cursor-move">
               <span>📰 NewsBot</span>
@@ -225,7 +249,8 @@ const Chatbot = () => {
               </button>
             </div>
           </div>
-        </Rnd>
+        </div>
+        // {/* </Rnd> */}
       )}
     </div>
   );

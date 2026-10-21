@@ -3,10 +3,17 @@ import React, { useState } from "react";
 const Subscribe = () => {
   const [email, setEmail] = useState("");
   const [success, setSuccess] = useState("");
+  const [statusType, setStatusType] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleSubscribe = async (e) => {
     e.preventDefault();
+
     if (!email) return;
+
+    setLoading(true);
+    setSuccess("");
+    setStatusType("");
 
     try {
       const res = await fetch(`${import.meta.env.VITE_API_URL}/subscribe`, {
@@ -18,15 +25,19 @@ const Subscribe = () => {
       const data = await res.json();
 
       if (res.ok) {
-        setSuccess(data.message || "✅ Subscribed successfully!");
+        setStatusType("success");
+        setSuccess(data.message || "Subscribed successfully!");
+        setEmail("");
       } else {
-        setSuccess(data.error || "❌ Subscription failed. Try again.");
+        setStatusType("error");
+        setSuccess(data.error || "Subscription failed. Please try again.");
       }
     } catch (err) {
-      console.error("❌ Subscription error:", err);
-      setSuccess("❌ Subscription failed. Try again.");
+      console.error("Subscription error:", err);
+      setStatusType("error");
+      setSuccess("Subscription failed. Please try again.");
     } finally {
-      setEmail("");
+      setLoading(false);
     }
   };
 
@@ -52,7 +63,11 @@ const Subscribe = () => {
         </button>
       </form>
       {success && (
-        <p className={`mt-3 ${res.ok ? "text-green-600" : "text-red-600"}`}>
+        <p
+          className={`mt-3 ${
+            statusType === "success" ? "text-green-600" : "text-red-600"
+          }`}
+        >
           {success}
         </p>
       )}

@@ -1,8 +1,10 @@
 import React from "react";
+import Nav from "../components/nav";
 
 const About = () => {
   return (
     <section className="bg-neutral-50 py-16">
+      <Nav />
       <div className="mx-auto max-w-7xl px-4">
         {/* Hero Section */}
         <div className="text-center mb-12">
